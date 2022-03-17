@@ -36,7 +36,8 @@ try:
     client = secretmanager.SecretManagerServiceClient()
     settings_name = os.environ.get("SETTINGS_NAME", "django_settings")
     name = client.secret_version_path(project, settings_name, "latest")
-    payload = client.access_secret_version(name=name).payload.data.decode("UTF-8")
+    payload = client.access_secret_version(
+        name=name).payload.data.decode("UTF-8")
     env.read_env(io.StringIO(payload))
 except (DefaultCredentialsError, PermissionDenied):
     pass
@@ -162,7 +163,7 @@ LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -194,7 +195,8 @@ LOGIN_REDIRECT_URL = "users:redirect"
 ACCOUNT_ADAPTER = "users.adapters.AccountAdapter"
 SOCIALACCOUNT_ADAPTER = "users.adapters.SocialAccountAdapter"
 ACCOUNT_ALLOW_REGISTRATION = env.bool("ACCOUNT_ALLOW_REGISTRATION", True)
-SOCIALACCOUNT_ALLOW_REGISTRATION = env.bool("SOCIALACCOUNT_ALLOW_REGISTRATION", True)
+SOCIALACCOUNT_ALLOW_REGISTRATION = env.bool(
+    "SOCIALACCOUNT_ALLOW_REGISTRATION", True)
 
 REST_AUTH_SERIALIZERS = {
     # Replace password reset serializer to fix 500 error
