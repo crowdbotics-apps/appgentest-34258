@@ -10,22 +10,51 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('app_info', '0001_initial'),
+        ("app_info", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('subscription_plan', '0001_initial'),
+        ("subscription_plan", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Subscription',
+            name="Subscription",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('is_active', models.BooleanField()),
-                ('start_date', models.DateTimeField(auto_now_add=True)),
-                ('date_modified', models.DateTimeField(auto_now=True)),
-                ('app', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subscription_app', to='app_info.App')),
-                ('plan', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subscription_plan', to='subscription_plan.Plan')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subscription_user', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("is_active", models.BooleanField()),
+                ("start_date", models.DateTimeField(auto_now_add=True)),
+                ("date_modified", models.DateTimeField(auto_now=True)),
+                (
+                    "app",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="subscription_app",
+                        to="app_info.App",
+                    ),
+                ),
+                (
+                    "plan",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="subscription_plan",
+                        to="subscription_plan.Plan",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="subscription_user",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

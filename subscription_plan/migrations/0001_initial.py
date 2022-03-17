@@ -15,15 +15,30 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Plan',
+            name="Plan",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('tier', models.TextField()),
-                ('description', models.TextField()),
-                ('price', models.IntegerField()),
-                ('date_created', models.DateTimeField(auto_now_add=True)),
-                ('date_modified', models.DateTimeField(auto_now=True)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='plan_user', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("tier", models.TextField()),
+                ("description", models.TextField()),
+                ("price", models.IntegerField()),
+                ("date_created", models.DateTimeField(auto_now_add=True)),
+                ("date_modified", models.DateTimeField(auto_now=True)),
+                (
+                    "user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="plan_user",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
