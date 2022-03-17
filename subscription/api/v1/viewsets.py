@@ -27,15 +27,14 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
                 plan: int
                 is_active: String
         """
-        app_id = request.data['app_id']
-        plan_id = request.data['plan']
+        app = request.data['app']
+        plan = request.data['plan']
 
-        plan = get_subscription_plan(plan_id)
-        app_instance = get_app(app_id)
+        plan = get_subscription_plan(plan)
+        app_instance = get_app(app)
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save(app=app_instance,
-                            user=request.user, plan=plan)
+            serializer.save(app=app_instance, plan=plan, user=request.user)
             return Response({
                 'data': serializer.data,
                 'message': 'Subscription successfully added.'},
