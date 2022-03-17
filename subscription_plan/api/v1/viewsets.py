@@ -27,7 +27,7 @@ class PlanViewSet(viewsets.ModelViewSet):
         """
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
+            serializer.save(user=request.user)
             return Response({
                 'data': serializer.data,
                 'message': 'Pricing plan successfully added.'},
