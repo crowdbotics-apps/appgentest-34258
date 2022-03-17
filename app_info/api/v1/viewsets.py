@@ -13,6 +13,7 @@ from subscription.api.v1.services import get_subscription_by_app_id, update_subs
 from .serializers import AppSerializer, AppWithSubscriptionDetailSerializer
 from app_info.api.v1.services import get_app
 
+
 class AppViewSet(viewsets.ModelViewSet):
     serializer_class = AppSerializer
     authentication_classes = (
@@ -21,6 +22,7 @@ class AppViewSet(viewsets.ModelViewSet):
     )
     permission_classes = [IsAuthenticated]
     queryset = App.objects.all()
+
     def create(self, request):
         """
             Creates a new app with details.
@@ -96,7 +98,7 @@ def update_subscription_by_appId(request, app_id):
         Url param:
             app_id: int
         Input body:
-            plan: String
+            plan: int
             is_active: String
     """
     plan_id = request.data["plan"]
