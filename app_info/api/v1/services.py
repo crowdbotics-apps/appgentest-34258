@@ -15,8 +15,7 @@ class NotFoundError(APIException):
 def get_app(id):
     logger.info("Querying for app with id {id}")
     try:
-        app = App.objects.get(id=id)
-        return app
+        return App.objects.get(id=id)
     except App.DoesNotExist:
         logger.exception(
             {
