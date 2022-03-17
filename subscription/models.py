@@ -25,6 +25,7 @@ class Subscription(models.Model):
         "users.User",
         on_delete=models.CASCADE,
         related_name="subscription_user",
+        blank=True
     )
 
 
