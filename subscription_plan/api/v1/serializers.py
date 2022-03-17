@@ -21,11 +21,11 @@ class PlanSerializer(serializers.ModelSerializer):
 
         if description is None or description == "":
             raise serializers.ValidationError(
-                'Add some description to the name')
+                'Add some description to the plan')
 
         if price is None or price == "":
             raise serializers.ValidationError(
-                'Input price associated with the name')
+                'Input price associated with the plan')
         return data
 
     def create(self, validated_data):
