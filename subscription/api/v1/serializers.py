@@ -25,7 +25,7 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         """Only Fields users can change or edit.
-            [app, is_active]
+            [app, plan, is_active]
         """
         instance.app = validated_data.get(
             'app', instance.app)
