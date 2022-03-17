@@ -1,16 +1,16 @@
 from rest_framework import authentication
-from app_info.models import App
-from .serializers import AppSerializer
+
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
+from drf_yasg.utils import swagger_auto_schema
 from django.shortcuts import get_object_or_404
 from app_info.models import App
+from .serializers import AppSerializer
+from .serializers import AppSerializer, AppWithSubscriptionDetailSerializer
 from subscription.api.v1.serializers import SubscriptionSerializer
 from subscription.api.v1.services import get_subscription_by_app_id, update_subscription_by_app_id
-from .serializers import AppSerializer, AppWithSubscriptionDetailSerializer
 from app_info.api.v1.services import get_app
 
 
@@ -92,6 +92,7 @@ def get_subscription_by_appId(request, app_id):
         status=status.HTTP_200_OK)
 
 
+@swagger_auto_schema(method='put', auto_schema=None)
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_subscription_by_appId(request, app_id):
