@@ -2,7 +2,7 @@ from rest_framework import authentication
 from app_info.models import App
 from .serializers import AppSerializer
 from rest_framework import viewsets, status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -77,6 +77,7 @@ class AppViewSet(viewsets.ModelViewSet):
 
 
 @api_view()
+@permission_classes([IsAuthenticated])
 def get_subscription_by_appId(request, app_id):
     """
         Custom api endpoint to retrieve app with subscription
@@ -92,6 +93,7 @@ def get_subscription_by_appId(request, app_id):
 
 
 @api_view(['PUT'])
+@permission_classes([IsAuthenticated])
 def update_subscription_by_appId(request, app_id):
     """
         Update the subscription for an app.
