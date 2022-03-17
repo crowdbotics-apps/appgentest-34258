@@ -9,7 +9,7 @@ from django.shortcuts import get_object_or_404
 from app_info.models import App
 from .serializers import AppSerializer
 from .serializers import AppSerializer, AppWithSubscriptionDetailSerializer
-from subscription.api.v1.serializers import SubscriptionSerializer
+from subscription.api.v1.serializers import CustomSubscriptionSerializer, SubscriptionSerializer
 from subscription.api.v1.services import get_subscription_by_app_id, update_subscription_by_app_id
 from app_info.api.v1.services import get_app
 
@@ -92,17 +92,13 @@ def get_subscription_by_appId(request, app_id):
         status=status.HTTP_200_OK)
 
 
-@swagger_auto_schema(method='put', auto_schema=None)
+@swagger_auto_schema(method='put', request_body=CustomSubscriptionSerializer)
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def update_subscription_by_appId(request, app_id):
     """
         Update the subscription for an app.
-        Url param:
-            app_id: int
-        Input body:
-            plan: int
-            is_active: String
+
     """
     plan_id = request.data["plan"]
     is_active = request.data["is_active"]

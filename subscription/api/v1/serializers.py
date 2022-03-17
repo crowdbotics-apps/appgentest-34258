@@ -35,3 +35,8 @@ class SubscriptionSerializer(serializers.ModelSerializer):
             'is_active', instance.is_active)
         instance.save()
         return instance
+
+
+class CustomSubscriptionSerializer(serializers.Serializer):
+    plan = serializers.IntegerField()
+    is_active = serializers.BooleanField()
