@@ -9,7 +9,7 @@ from app_info.models import App
 from subscription.models import Subscription
 
 
-class AppInfoTestCase(APITestCase):
+class SubscriptionTestCase(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(
             username="kenmartey", email="ken@gmail.com", password="veryStrong123!")

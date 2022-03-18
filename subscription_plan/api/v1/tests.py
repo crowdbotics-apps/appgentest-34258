@@ -6,7 +6,7 @@ from rest_framework.test import APITestCase
 from rest_framework import status
 
 
-class AppInfoTestCase(APITestCase):
+class SubscriptionPlanTestCase(APITestCase):
     def setUp(self):
         self.user = User.objects.create_user(
             username="kenmartey", email="ken@gmail.com", password="veryStrong123!")
