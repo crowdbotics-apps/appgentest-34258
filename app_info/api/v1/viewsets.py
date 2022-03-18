@@ -64,10 +64,6 @@ class AppViewSet(viewsets.ModelViewSet):
                 'message': 'App info successfully updated.'},
                 status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTT_400_BAD_REQUEST)
-     # Not allowed functions. Prevent unauthorized activity.
-
-    def list(self, request):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def destroy(self, request, pk=None):
         """Delet an app by id"""

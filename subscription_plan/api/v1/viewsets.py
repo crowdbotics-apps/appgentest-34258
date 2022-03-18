@@ -61,10 +61,6 @@ class PlanViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTT_400_BAD_REQUEST)
 
-     # Not allowed functions. Prevent unauthorized activity.
-    def list(self, request):
-        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
-
     def destroy(self, request, pk=None):
         plan_instance = get_object_or_404(self.queryset, pk=pk)
         plan_instance.delete()
