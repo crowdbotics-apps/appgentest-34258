@@ -1,12 +1,9 @@
 import json
 from users.models import User
-from django.urls import reverse
 from rest_framework.authtoken.models import Token
 from rest_framework.test import APITestCase
 
 from rest_framework import status
-from app_info.models import App
-from app_info.api.v1.serializers import AppSerializer
 
 
 class AppInfoTestCase(APITestCase):
